@@ -18,15 +18,15 @@ public class Laser extends Rectangle{
 	
 	
 	public Laser(int x, int y,LinkedList<Rectangle> tubes) {
-		setBounds(x,y,60, 60);
+		setBounds(x,y,40, 40);
 		this.tubes = tubes;
 		texture = new BufferedImage[2];
 		
 		try {	
-		sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("laser.png"));
+		sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Laser.png"));
 			
 
-		texture[1] = sheet.getSubimage(0, 0, 60, 60);
+		texture[1] = sheet.getSubimage(60, 0, 60, 40);
 
 		}catch(IOException e) {}
 	}
