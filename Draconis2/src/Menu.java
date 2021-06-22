@@ -17,47 +17,45 @@ public class Menu extends JLabel implements MouseListener {
 	public Rectangle SinglePlayerButton = new Rectangle(draconis.WIDTH / 3 + 60, 250, 215, 50);
 	public Rectangle MultiPlayerButton = new Rectangle(draconis.WIDTH / 3 + 70, 350, 195, 50);
 	public Rectangle quitButton = new Rectangle(draconis.WIDTH / 3 + 120, 450, 100, 50);
-	
-	private BufferedImage sheet; 
-	private BufferedImage[] background; 
 
+	private BufferedImage sheet;
+	private BufferedImage[] background;
 
 	public void render(Graphics g) {
-		
+
 		background = new BufferedImage[2];
-		
-		try {	
-		sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Menu_background.png"));
-			
 
-		background[1] = sheet.getSubimage(0, 0, 1200, 800);
+		try {
+			sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Menu_background.png"));
 
-		}catch(IOException e) {}
+			background[1] = sheet.getSubimage(0, 0, 1200, 800);
 
-		g.drawImage(background[1],CENTER,CENTER,draconis.WIDTH,draconis.HEIGHT,null);
-		
+		} catch (IOException e) {
+		}
+
+		g.drawImage(background[1], CENTER, CENTER, draconis.WIDTH, draconis.HEIGHT, null);
+
 		Graphics2D g2d = (Graphics2D) g; // using Graphics2D in order to draw the rectangles of our buttons.
-		
+
 		g.setColor(Color.white); // color of the font
-		
+
 		Font fnt1 = new Font("arial", Font.BOLD, 30); // creating font for the button text
 		g.setFont(fnt1);
-		g.drawString("SinglePlayer", SinglePlayerButton.x + 19, SinglePlayerButton.y + 35); // drawing the string "play" to the play button and
-																	// centered it.
+		g.drawString("SinglePlayer", SinglePlayerButton.x + 19, SinglePlayerButton.y + 35); // drawing the string "play"
+																							// to the play button and
+		// centered it.
 		g2d.draw(SinglePlayerButton); // drawing the play button rectangle in the screen
-		
-		g.drawString("Multiplayer", MultiPlayerButton.x + 19, MultiPlayerButton.y + 35); // drawing the string "Multiplayer"
-		
+
+		g.drawString("Multiplayer", MultiPlayerButton.x + 19, MultiPlayerButton.y + 35); // drawing the string
+																							// "Multiplayer"
+
 		g2d.draw(MultiPlayerButton); // drawing the multiplayer button rectangle in the screen.
 
 		g.drawString("Quit", quitButton.x + 19, quitButton.y + 35); // drawing the string "quit" to the quit button and
 																	// centered it.
 		g2d.draw(quitButton); // drawing the quit button rectangle in the screen
-		
-		
-	
+
 	}
-	
 
 	public void mouseClicked(MouseEvent e) {
 
@@ -80,12 +78,12 @@ public class Menu extends JLabel implements MouseListener {
 				draconis.showingPlayer1 = true;
 			}
 		}
-		
-		if(mx >= draconis.WIDTH / 3 + 120 && mx <= draconis.WIDTH / 3 + 220) {
-			
-			if(my >= 350 && my <= 400) {
-				
-				//pressed multiplayer button
+
+		if (mx >= draconis.WIDTH / 3 + 120 && mx <= draconis.WIDTH / 3 + 220) {
+
+			if (my >= 350 && my <= 400) {
+
+				// pressed multiplayer button
 				draconis.State = draconis.STATE.MULTIPLAYER;
 				draconis.showingEnemy = false;
 				draconis.showingPlayer2 = false;
@@ -102,9 +100,7 @@ public class Menu extends JLabel implements MouseListener {
 			}
 		}
 
-		}
-
-	
+	}
 
 	public void mouseReleased(MouseEvent e) {
 

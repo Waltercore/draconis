@@ -12,8 +12,6 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
-
-
 /**
  * @author Walter Pereira
  * @version 1.0
@@ -44,33 +42,33 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 	/**
 	 * Importing the objects of the different classes.
 	 */
-	
+
 	public static Room room; // Creating the object of the class Room
-	public static Dragon dragon; //Creating the object of the class Dragon
+	public static Dragon dragon; // Creating the object of the class Dragon
 	public Fireball fireball; // Creating the object of the class Fireball
 	public Fireball2 fireball2; // Creating the object of the class Fireball2
 	public Enemy enemy; // Creating the object of the class Enemy
 	public Enemy2 enemy2; // Creating the object of the class Enemy2
 	private Menu menu; // Creating the object of the class Menu
-	public Background background;  // Creating the object of the class Background
-	public GameOver gameover;  // Creating the object of the class GameOver
+	public Background background; // Creating the object of the class Background
+	public GameOver gameover; // Creating the object of the class GameOver
 	public Laser laser; // Creating the object of the class Laser
 	public Iceball iceball; // Creating the object of the class Iceball
-	public static Player2 player2; //Creating the object of the class Player2
+	public static Player2 player2; // Creating the object of the class Player2
 
-	public static enum STATE { 
+	public static enum STATE {
 		MENU, SINGLEPLAYER, MULTIPLAYER, GAMEOVER,
 	};
 
-	
-	public static STATE State = STATE.MENU;  
+	public static STATE State = STATE.MENU;
+
 	/**
-	 * This state variable will check in what state we are.
-	 * Used the enum data type to represent the set of our different unchangeable state variables.
+	 * This state variable will check in what state we are. Used the enum data type
+	 * to represent the set of our different unchangeable state variables.
 	 */
 
 	public draconis() {
-		
+
 		Dimension d = new Dimension(draconis.WIDTH, draconis.HEIGHT); // Creating a new dimension
 		setPreferredSize(d);
 		addKeyListener(this); // initializing keylistener of this class.
@@ -199,8 +197,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 	}
 
 	/**
-	 * The main method of the game contains mainly the generation of the window with resizing canvas 
-	 * and the different components and configuration of the window.
+	 * The main method of the game contains mainly the generation of the window with
+	 * resizing canvas and the different components and configuration of the window.
+	 * 
 	 * @param args array of string arguments.
 	 */
 	public static void main(String[] args) {

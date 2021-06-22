@@ -17,43 +17,39 @@ public class GameOver extends JLabel implements MouseListener {
 	public Rectangle restart = new Rectangle(draconis.WIDTH / 3 + 110, 250, 120, 50);
 	public Rectangle quitButton = new Rectangle(draconis.WIDTH / 3 + 120, 350, 100, 50);
 
-	
-	private BufferedImage sheet; 
-	private BufferedImage[] background; 
+	private BufferedImage sheet;
+	private BufferedImage[] background;
 
-	
 	public void render(Graphics g) {
-		
+
 		background = new BufferedImage[2];
-		
-		try {	
-		sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Draconis GameOver.png"));
-			
 
-		background[1] = sheet.getSubimage(0, 0, 1200, 800);
+		try {
+			sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Draconis GameOver.png"));
 
-		}catch(IOException e) {}
+			background[1] = sheet.getSubimage(0, 0, 1200, 800);
 
-		g.drawImage(background[1],CENTER,CENTER,draconis.WIDTH,draconis.HEIGHT,null);
-		
+		} catch (IOException e) {
+		}
+
+		g.drawImage(background[1], CENTER, CENTER, draconis.WIDTH, draconis.HEIGHT, null);
+
 		Graphics2D g2d = (Graphics2D) g; // using Graphics2D in order to draw the rectangles of our buttons.
-		
+
 		g.setColor(Color.white); // color of the font
-		
+
 		Font fnt1 = new Font("arial", Font.BOLD, 30); // creating font for the button text
 		g.setFont(fnt1);
-		g.drawString("Restart", restart.x + 10, restart.y + 35); // drawing the string "Restart" to the restart button and
+		g.drawString("Restart", restart.x + 10, restart.y + 35); // drawing the string "Restart" to the restart button
+																	// and
 																	// centered it.
 		g2d.draw(restart); // drawing the play button rectangle in the screen
 
 		g.drawString("Quit", quitButton.x + 19, quitButton.y + 35); // drawing the string "quit" to the quit button and
 																	// centered it.
 		g2d.draw(quitButton); // drawing the quit button rectangle in the screen
-		
-		
-	
-	}
 
+	}
 
 	public void mouseClicked(MouseEvent e) {
 
@@ -69,15 +65,15 @@ public class GameOver extends JLabel implements MouseListener {
 		if (mx >= draconis.WIDTH / 3 + 10 && mx <= draconis.WIDTH / 3 + 220) {
 
 			if (my >= 250 && my <= 300) {
-				
-				//restarting the game
 
-					draconis.State = draconis.STATE.SINGLEPLAYER;
-					draconis.room = new Room(90);
-					draconis.dragon.y = draconis.HEIGHT/2;
-					draconis.player2.y = draconis.HEIGHT/2;
-					draconis.scoreP1 = 0; // restarting the score of P1
-					draconis.scoreP2 = 0; // restarting the score of P2
+				// restarting the game
+
+				draconis.State = draconis.STATE.SINGLEPLAYER;
+				draconis.room = new Room(90);
+				draconis.dragon.y = draconis.HEIGHT / 2;
+				draconis.player2.y = draconis.HEIGHT / 2;
+				draconis.scoreP1 = 0; // restarting the score of P1
+				draconis.scoreP2 = 0; // restarting the score of P2
 
 			}
 		}
@@ -91,10 +87,7 @@ public class GameOver extends JLabel implements MouseListener {
 			}
 		}
 
-		}
-
-
-	
+	}
 
 	public void mouseReleased(MouseEvent e) {
 

@@ -8,43 +8,37 @@ import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class Background extends JLabel{
+public class Background extends JLabel {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public boolean isPressed = false;
-	private BufferedImage sheet; //sheet
+	private BufferedImage sheet; // sheet
 	private BufferedImage sheet2;
-	private BufferedImage[] background; //texture
-	
-	public Background(int x, int y,ArrayList<JLabel> image) {
+	private BufferedImage[] background; // texture
+
+	public Background(int x, int y, ArrayList<JLabel> image) {
 		background = new BufferedImage[2];
-		
-		try {	
-		sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Background_game.png"));
-			
 
-		background[1] = sheet.getSubimage(0, 0, 1200, 800);
+		try {
+			sheet = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Background_game.png"));
 
-		}catch(IOException e) {}
+			background[1] = sheet.getSubimage(0, 0, 1200, 800);
+
+		} catch (IOException e) {
+		}
 
 	}
 
-
-	
 	public void update() {
-		this.setLocation(SwingConstants.CENTER, SwingConstants.CENTER);;
-			
-			}
-	
+		this.setLocation(SwingConstants.CENTER, SwingConstants.CENTER);
+		;
+
+	}
 
 	public void render(Graphics g) {
-		g.drawImage(background[1],CENTER,CENTER,draconis.WIDTH,draconis.HEIGHT,null);
-		
+		g.drawImage(background[1], CENTER, CENTER, draconis.WIDTH, draconis.HEIGHT, null);
+
 	}
 
-		
-		
-	}
-	
-
+}
