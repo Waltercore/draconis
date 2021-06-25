@@ -12,68 +12,131 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class draconis is the main class of the game.
+ *
  * @author Walter Pereira
  * @version 1.0
- * 
  */
-
-//this is the main class of the game.
 
 public class draconis extends Canvas implements Runnable, KeyListener {
 
-	// creating game window
+	/** Default reference ID. */
 	private static final long serialVersionUID = 1L;
+
+	/** Setting the dimensions of our game Window. */
 	public static final int WIDTH = 1000, HEIGHT = 800;
+
+	/** The running. */
 	private boolean running = false;
+
+	/** The thread of the game. */
 	private Thread thread;
 
-	public static double scoreP1 = 0; // used for the score of player 1
-	public static double scoreP2 = 0; // used for the score of player 2
-	public static boolean showingEnemy = false; // used to know when to spawn the enemy
-	public static boolean enemyKilled = false; // used to know when to remove the enemy
-	public static boolean showingEnemy2 = false; // used to know when to spawn the enemy 2
-	public static boolean enemy2Killed = false; // used to know when to remove the enemy 2
-	public static boolean showingPlayer1 = false; // used to know when to spawn player 1
-	public static boolean showingPlayer2 = false; // used to know when to spawn player 2
-	public static boolean player1Killed = false; // used to know when to remove player 1 in multiplayer
-	public static boolean player2killed = false; // used to know when to remove player 2 in multiplayer
+	/** The score P1. */
+	public static double scoreP1 = 0;
+
+	/** The score of P2. */
+	public static double scoreP2 = 0;
+
+	/** Used to know when to spawn the enemy. */
+	public static boolean showingEnemy = false;
+
+	/** The enemy killed is used to know when to remove the enemy. */
+	public static boolean enemyKilled = false;
+
+	/** The showing enemy 2 is used to know when to spawn the enemy2. */
+	public static boolean showingEnemy2 = false;
+
+	/** The enemy 2 killed is used to know when to remove the enemy 2. */
+	public static boolean enemy2Killed = false;
+
+	/** The showing player 1 is used to know when to spawn the player 1. */
+	public static boolean showingPlayer1 = false;
+
+	/** The showing player 2 is used to know when to spawn the player 2. */
+	public static boolean showingPlayer2 = false;
+
+	/**
+	 * The player 1 killed is used to know when to remove player 1 in multiplayer.
+	 */
+	public static boolean player1Killed = false;
+
+	/**
+	 * The player 2 killed is used to know when to remove player 2 in multiplayer.
+	 */
+	public static boolean player2killed = false;
 
 	/**
 	 * Importing the objects of the different classes.
 	 */
 
-	public static Room room; // Creating the object of the class Room
-	public static Dragon dragon; // Creating the object of the class Dragon
-	public Fireball fireball; // Creating the object of the class Fireball
-	public Fireball2 fireball2; // Creating the object of the class Fireball2
-	public Enemy enemy; // Creating the object of the class Enemy
-	public Enemy2 enemy2; // Creating the object of the class Enemy2
-	private Menu menu; // Creating the object of the class Menu
-	public Background background; // Creating the object of the class Background
-	public GameOver gameover; // Creating the object of the class GameOver
-	public Laser laser; // Creating the object of the class Laser
-	public Iceball iceball; // Creating the object of the class Iceball
-	public static Player2 player2; // Creating the object of the class Player2
+	public static Room room; 
 
+	/** The dragon object of class Dragon. */
+	public static Dragon dragon;
+
+	/** The fireball object of the class Fireball. */
+	public Fireball fireball;
+
+	/** The fireball2 object of the class Fireball2. */
+	public Fireball2 fireball2;
+
+	/** The enemy object of the class Enemy. */
+	public Enemy enemy;
+
+	/** The enemy 2 is the object of the class Enemy2. */
+	public Enemy2 enemy2;
+
+	/** The menu is the object of the class Menu. */
+	private Menu menu;
+
+	/** The background is the object of the class background. */
+	public Background background;
+
+	/** The gameover is the object of the class GameOver. */
+	public GameOver gameover;
+
+	/** The laser is the object of the class Laser. */
+	public Laser laser;
+
+	/** The iceball is the object of the class Iceball. */
+	public Iceball iceball;
+
+	/** The player2 is the object of the class Player2. */
+	public static Player2 player2;
+
+	/**
+	 * The Enum java class contains the different states of the game so that the
+	 * STATE variable can take one of the states enum constants as value.
+	 */
 	public static enum STATE {
-		MENU, SINGLEPLAYER, MULTIPLAYER, GAMEOVER,
+
+		MENU,
+
+		SINGLEPLAYER,
+
+		MULTIPLAYER,
+
+		GAMEOVER,
 	};
 
+	/**
+	 * The state variable will check in what state we are. Used the enum data type
+	 * to represent the set of our different unchangeable state variables.
+	 */
 	public static STATE State = STATE.MENU;
 
 	/**
-	 * This state variable will check in what state we are. Used the enum data type
-	 * to represent the set of our different unchangeable state variables.
+	 * This constructor instantiates all of our objects.
 	 */
-
 	public draconis() {
 
 		Dimension d = new Dimension(draconis.WIDTH, draconis.HEIGHT); // Creating a new dimension
 		setPreferredSize(d);
-		addKeyListener(this); // initializing keylistener of this class.
-		this.addMouseListener(new Menu()); // initializing mouse listener from class Menu.
-		// initializing our classes
+		addKeyListener(this); 
+		this.addMouseListener(new Menu()); // instantiating mouse listener from class Menu.
 		room = new Room(90); // setting the time to spawn the tubes.
 		dragon = new Dragon(20, draconis.HEIGHT / 2, room.tubes);
 		player2 = new Player2(40, draconis.HEIGHT / 2, room.tubes);
@@ -89,6 +152,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * This method contains a timer that will help to generate a laser every second.
+	 */
 	public void generateLasers() {
 		// Declare the timer
 		Timer t = new Timer();
@@ -111,6 +177,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * this method is the timer for the iceballs generation.
+	 */
 	public void generateIceballs() {
 		// Declare the timer
 		Timer t = new Timer();
@@ -133,6 +202,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * This method is the timer for the Fireballs of the player 1.
+	 */
 	public void generateFireballsPlayer1() { // method to generate fireballs with timer
 		// Declare the timer
 		Timer t = new Timer();
@@ -153,6 +225,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 				1000);
 	}
 
+	/**
+	 * This method is the timer to generate fireballs of player 2.
+	 */
 	public void generateFireballsPlayer2() { // method to generate fireballs with timer
 		// Declare the timer
 		Timer t = new Timer();
@@ -173,6 +248,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 				1000);
 	}
 
+	/**
+	 * This method is called to Start the thread.
+	 */
 	public synchronized void start() {
 
 		if (running)
@@ -183,6 +261,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 						// routine.
 	}
 
+	/**
+	 * this method is called to stop the thread.
+	 */
 	public synchronized void stop() {
 		// when we close the game, we are going to call this method.
 		if (!running)
@@ -199,6 +280,7 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 	/**
 	 * The main method of the game contains mainly the generation of the window with
 	 * resizing canvas and the different components and configuration of the window.
+	 * Also, the main method starts the thread of the game.
 	 * 
 	 * @param args array of string arguments.
 	 */
@@ -218,6 +300,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * Run.
+	 */
 	@Override
 	public void run() {
 		int fps = 0;
@@ -250,6 +335,9 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 		stop(); // after game loop finishes, we make it stop.
 	}
 
+	/**
+	 * Render.
+	 */
 	private void render() {
 		BufferStrategy bs = getBufferStrategy(); // initializing the bufferstrategy which helps to organize memory on
 													// our canvas
@@ -362,6 +450,11 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 		bs.show(); // to show what we render in the screen.
 	}
 
+	/**
+	 * Each object implements an update method that simulates one frame of the
+	 * object's behavior. Each frame, the game updates every object in the
+	 * collection.
+	 */
 	private void update() {
 		// calling all the update methods from the other classes.
 		background.update();
@@ -381,6 +474,13 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * //creating key event, if user press "Z" the dragon of player 1 goes up, if
+	 * user press "N" the player 2 goes up. by calling the "isPressed" condition in
+	 * Dragon & player2 class.
+	 *
+	 * @param e the e
+	 */
 	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_Z) { // creating key event, if user press "Z" the dragon of player 1 goes up,
@@ -396,6 +496,13 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * Key released. if Z is not pressed, isPressed condition is false and moves to
+	 * isFalling in Dragon class. if N is not pressed, isPressed condition is false
+	 * and moves to isFalling in Player2 class.
+	 *
+	 * @param e the e
+	 */
 	public void keyReleased(KeyEvent e) {
 
 		if (e.getKeyCode() == KeyEvent.VK_Z) { // if Z is not pressed, isPressed is false and moves to isFalling
@@ -411,6 +518,11 @@ public class draconis extends Canvas implements Runnable, KeyListener {
 
 	}
 
+	/**
+	 * Key typed default method.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
